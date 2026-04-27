@@ -86,13 +86,13 @@ WSGI_APPLICATION = "backendontrip.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "dbdevontrip",
-        "HOST": "127.0.0.1",
-        "PORT": "3000",
-        "USER": "root",
-        "PASSWORD": "Ye.fer.14!",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'C1002975$dbdevontrip',
+        'USER': 'C1002975',
+        'PASSWORD': 'DEV.MySQL.2026',
+        'HOST': 'C1002975.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
 
