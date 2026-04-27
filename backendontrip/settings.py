@@ -58,7 +58,9 @@ MIDDLEWARE = [
     
 ]
 CORS_ALLOW_ALL_ORIGINS = True
-
+ALLOWED_HOSTS = [
+    'C1002975.pythonanywhere.com'
+]
 ROOT_URLCONF = "backendontrip.urls"
 
 TEMPLATES = [
