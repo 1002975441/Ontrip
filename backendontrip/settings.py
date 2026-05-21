@@ -18,7 +18,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -58,9 +59,7 @@ MIDDLEWARE = [
     
 ]
 CORS_ALLOW_ALL_ORIGINS = True
-ALLOWED_HOSTS = [
-    'C1002975.pythonanywhere.com'
-]
+
 ROOT_URLCONF = "backendontrip.urls"
 
 TEMPLATES = [
@@ -88,11 +87,11 @@ WSGI_APPLICATION = "backendontrip.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'C1002975$dbdevontrip',
-        'USER': 'C1002975',
-        'PASSWORD': 'DEV.MySQL.2026',
-        'HOST': 'C1002975.mysql.pythonanywhere-services.com',
-        'PORT': '3306',
+        'NAME': 'dbdevontrip',
+        'USER': 'root',
+        'PASSWORD': 'Ye.fer.14!',
+        'HOST': '127.0.0.1',
+        'PORT': '3000',
     }
 }
 
