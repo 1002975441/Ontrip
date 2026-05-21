@@ -88,10 +88,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dbdevontrip',
-        'USER': 'root',
-        'PASSWORD': 'Ye.fer.14!',
-        'HOST': '127.0.0.1',
-        'PORT': '3000',
+        'USER': 'devmysqlontrip',
+        'PASSWORD': 'Cauca123*',
+        'HOST': '31.97.137.26',
+        'PORT': '2026',
     }
 }
 
