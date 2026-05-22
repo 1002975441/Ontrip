@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "31.97.137.26",
-    "new-backendgotrip-d12gln-6a82a1-31-97-137-26.sslip.io",
+    "new-backendgotrip-d12gln-f202d5-31-97-137-26.sslip.io/",
 ]
 
 
