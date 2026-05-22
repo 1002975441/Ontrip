@@ -29,12 +29,7 @@ SECRET_KEY = "django-insecure-12^zr*hv_o3a_d)*1y6miipa-^b1l-mm+ras@7nu-=oml4q1k@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "31.97.137.26",
-    "new-backendgotrip-d12gln-f202d5-31-97-137-26.sslip.io/",
-]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
