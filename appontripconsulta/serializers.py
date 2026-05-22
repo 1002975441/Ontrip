@@ -61,6 +61,28 @@ class ActividadTuristicaSerializer(serializers.ModelSerializer):
             'estado',
             'fecha_creacion',
         ]
+
+class TurismoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Turismo
+        
+        fields = [
+            'Id',
+            'Nombre',
+            'Descripcion',
+            'Estado',
+        ]
+        
+class DestinoTipoTurismoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = destinotipoturismo
+        
+        fields = [
+            'Id',
+            'Id_turismo',
+            'Id_destino',
+            
+        ]
         
 class DestinoTuristicoSerializer(serializers.ModelSerializer):
 
@@ -73,8 +95,8 @@ class DestinoTuristicoSerializer(serializers.ModelSerializer):
     pais_nombre = serializers.CharField(source='municipio.departamento.region.pais.nombre_pais', read_only=True)
     imagenes = FotografiasSerializer(many=True, read_only=True)
     actividades = ActividadTuristicaSerializer(many=True, read_only=True)
-
-    
+    tiposturismo = TurismoSerializer(many=True, read_only=True)
+    destinotipoturismo = DestinoTipoTurismoSerializer(many=True, read_only=True)
     class Meta:
         model = DestinoTuristico
 
@@ -103,5 +125,7 @@ class DestinoTuristicoSerializer(serializers.ModelSerializer):
             'fecha_creacion',
             'imagenes',
             'actividades',
+            'tiposturismo',
+            'destinotipoturismo',
         ]
         

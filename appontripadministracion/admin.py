@@ -16,6 +16,8 @@ from appontripadministracion.models import (
     EstablecimientoTuristico,
     TipoAlojamiento,
     Alojamiento,
+    Turismo,
+    destinotipoturismo
 )
 
 
@@ -88,3 +90,11 @@ class TipoAlojamientoAdmin(admin.ModelAdmin):
 @admin.register(Alojamiento)
 class AlojamientoAdmin(admin.ModelAdmin):
     list_display = ('Id', 'Id_destino', 'Id_establecimiento', 'Nombre')
+    
+@admin.register(Turismo)
+class TurismoAdmin(admin.ModelAdmin):
+    list_display = ('Id', 'Nombre', 'Estado')
+    
+@admin.register(destinotipoturismo)
+class DestinotipoturismoAdmin(admin.ModelAdmin):
+      list_display = ('Id', 'Id_destino', 'Id_turismo')  

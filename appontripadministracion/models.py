@@ -66,6 +66,7 @@ class DestinoTuristico(models.Model):
     email_responsable_destino = models.EmailField(null=True, blank=True)
     estado = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
+    tiposturismo = models.ManyToManyField("Turismo", through='destinotipoturismo', related_name='destinos')
 
     class Meta:
         db_table = 'destinosturisticos'
@@ -211,3 +212,26 @@ class Alojamiento(models.Model):
     
     class Meta:
         db_table = 'alojamiento'
+
+class Turismo(models.Model):
+    Id = models.AutoField(primary_key=True)
+    Nombre = models.CharField(max_length=250, unique=True, null=False, blank=False)
+    Descripcion = models.TextField(null=True, blank=True)
+    Estado = models.BooleanField(null=False, blank=False)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    class Meta: 
+        db_table = 'turismo'
+    
+    def __str__(self):
+        return self.Nombre
+        
+class destinotipoturismo(models.Model):
+    Id = models.AutoField(primary_key=True)
+    Id_turismo = models.ForeignKey(Turismo, on_delete=models.CASCADE, null=False, blank=False)
+    Id_destino = models.ForeignKey(DestinoTuristico, on_delete=models.CASCADE, null=False, blank=False,
+                                   related_name='destinotipoturismo')
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'destinotipoturismo'
