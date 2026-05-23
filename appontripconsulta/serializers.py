@@ -88,6 +88,30 @@ class DestinoTipoTurismoSerializer(serializers.ModelSerializer):
         
 class DestinoTuristicoSerializer(serializers.ModelSerializer):
 
+    region = serializers.CharField(source='municipio.departamento.region.nombre_region', read_only=True)
+    departamento = serializers.CharField(source='municipio.departamento.nombre_departamento', read_only=True)
+    municipio = serializers.CharField(source='municipio.nombre_municipio', read_only=True)
+    tipos_turismo = serializers.SerializerMethodField()
+    class Meta:
+        model = DestinoTuristico
+
+        fields = [
+            'id',
+            'nombre_destino',
+            'region',
+            'departamento',
+            'municipio',
+            'tipos_turismo'
+        ]
+
+    def get_tipos_turismo(self, obj):
+
+        return [
+            item.Id_turismo.Nombre
+            for item in obj.destinotipoturismo.all()
+        ]
+class DestinoTuristicoSerializerCpy(serializers.ModelSerializer):
+
     municipio_nombre = serializers.CharField(source='municipio.nombre_municipio', read_only=True)
     departamento_id = serializers.IntegerField(source='municipio.departamento.id', read_only=True)
     departamento_nombre = serializers.CharField(source='municipio.departamento.nombre_departamento', read_only=True)
