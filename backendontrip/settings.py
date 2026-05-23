@@ -29,7 +29,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://api.ontrip.jmproyects.com",
+    "https://ontrip.jmproyects.com",
+]
 # Application definition
 
 INSTALLED_APPS = [

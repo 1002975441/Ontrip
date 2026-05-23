@@ -28,6 +28,7 @@ class Region(models.Model):
 
 class Departamento(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    Id_pais = models.ForeignKey(Pais, on_delete=models.CASCADE, null=False, blank=False)
     nombre_departamento = models.CharField(max_length=250)
     estado = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
@@ -235,3 +236,9 @@ class destinotipoturismo(models.Model):
 
     class Meta:
         db_table = 'destinotipoturismo'
+
+class tipoproducto (models.Model):
+    Id = models.AutoField(primary_key=True)
+    Nombre = models.CharField(max_length=250, null=False, blank=False)
+    Descripcion = models.TextField(null=False, blank=False)
+    
