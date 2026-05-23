@@ -82,6 +82,7 @@ class DestinoTipoTurismoSerializer(serializers.ModelSerializer):
         fields = [
             'Id',
             'turismo',
+            'Id_destino',
             
         ]
         
