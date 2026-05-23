@@ -133,7 +133,7 @@ class FiltrosJerarquicosAPIView(APIView):
             destinos = destinos.filter(id=destino_id)
 
         destinos = destinos.distinct().order_by('nombre_destino')
-        destinos_serializados = DestinoTuristicoSerializer(destinos, many=True).data
+        destinos_serializados = DestinoTuristicoSerializerFiltros(destinos, many=True).data
 
         return Response({
             'paises': paises_serializados,
