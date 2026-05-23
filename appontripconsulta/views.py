@@ -103,11 +103,22 @@ class FiltrosJerarquicosAPIView(APIView):
         # =========================
         # DESTINOS TURÍSTICOS
         # =========================
-        destinos = DestinoTuristico.objects.filter(estado=True).select_related(
+# =========================
+# DESTINOS TURÍSTICOS
+# =========================
+        destinos = DestinoTuristico.objects.filter(
+            estado=True
+        ).select_related(
             'municipio',
             'municipio__departamento',
             'municipio__departamento__region',
             'municipio__departamento__region__pais'
+        ).prefetch_related(
+            'imagenes',
+            'actividades',
+            'tiposturismo',
+            'destinotipoturismo',
+            'destinotipoturismo__Id_turismo'
         )
 
         if pais_id:
