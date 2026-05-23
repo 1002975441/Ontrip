@@ -75,15 +75,13 @@ class TurismoSerializer(serializers.ModelSerializer):
         
 class DestinoTipoTurismoSerializer(serializers.ModelSerializer):
     
-    turismo_id = serializers.IntegerField(source='Id_turismo.Id', read_only=True)
-    turismo_nombre = serializers.CharField(source='Id_turismo.Nombre',read_only=True)
+    turismo = TurismoSerializer(source='Id_turismo', read_only=True)
     class Meta:
         model = destinotipoturismo
         
         fields = [
             'Id',
-            'Id_turismo',
-            'Id_destino',
+            'turismo',
             
         ]
         
