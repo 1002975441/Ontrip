@@ -4,6 +4,7 @@ from rest_framework.renderers import JSONRenderer
 from appontripadministracion.models import *
 from appontripconsulta.serializers import *
 from rest_framework.generics import RetrieveAPIView
+from rest_framework import generics
 
 
 class FiltrosJerarquicosAPIView(APIView):
@@ -103,9 +104,6 @@ class FiltrosJerarquicosAPIView(APIView):
         # =========================
         # DESTINOS TURÍSTICOS
         # =========================
-# =========================
-# DESTINOS TURÍSTICOS
-# =========================
         destinos = DestinoTuristico.objects.filter(
             estado=True
         ).select_related(
@@ -146,3 +144,11 @@ class FiltrosJerarquicosAPIView(APIView):
 class DestinoTuristicoDetailView(RetrieveAPIView):
     queryset = DestinoTuristico.objects.all()
     serializer_class = DestinoTuristicoSerializer
+
+class FotografiasDetailView(generics.ListAPIView):
+    queryset = fotografias.objects.all()
+    serializer_class = Fotografias_serializer_list
+
+class Establecimientos_turisticos_detailview(generics.ListAPIView):
+    queryset = EstablecimientoTuristico.objects.all()
+    serializer_class = Establecimientos_turisticos_serializers_list

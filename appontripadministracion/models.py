@@ -241,4 +241,79 @@ class tipoproducto (models.Model):
     Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=250, null=False, blank=False)
     Descripcion = models.TextField(null=False, blank=False)
+
+    def __str__ (self):
+        return self.Nombre
+    class Meta:
+        db_table = 'tipoproducto'
+        
+class productos (models.Model):
+    Id = models.AutoField(primary_key=True)
+    Id_tipoproducto = models.ForeignKey(tipoproducto, on_delete=models.CASCADE, null=False, blank=False)
+    Nombre = models.CharField(max_length=250, null=False, blank=False)
+    Descripcion = models.TextField(null=True, blank=True)
+    Envios_nacionales = models.BooleanField(null=True, blank=True)
+    Envios_internacionales = models.BooleanField(null=True, blank=True)
     
+    def __str__ (self):
+        return self.Nombre
+
+    class Meta: 
+        db_table = 'productos'
+        
+class nosotros(models.Model):
+    Id = models.AutoField(primary_key=True)
+    Nombre_sistema = models.CharField(max_length=250, null=False, blank=False)
+    Slogan = models.CharField(max_length=250, null=False, blank=False)
+    Descripcion = models.TextField(null=False, blank=False)
+    Objetivo = models.TextField(null=False, blank=False)
+    Mision = models.TextField(null=False, blank=False)
+    Vision = models.TextField(null=False, blank=False)
+    Historia = models.TextField(null=False, blank=False)
+    Email_contacto = models.EmailField(null=False, blank=False)
+    Telefono_contacto = models.CharField(max_length=13, null=False, blank=False)
+    Facebook = models.URLField(null=True, blank=True)
+    Intagram = models.URLField(null=True, blank=True)
+    Estado = models.BooleanField(null=False, blank=False)
+    Fecha_creacion = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table = 'nosotros'
+        
+class equipotrabajo(models.Model):
+    Id = models.AutoField(primary_key=True)
+    Nombre = models.CharField(max_length=250, null=False, blank=False)
+    Formacion_academica = models.CharField(max_length=250, null=False, blank=False)
+    Cargo = models.CharField(max_length=250, null=False, blank=False)
+    Descripcion = models.TextField(null=False, blank=False)
+
+    class Meta:
+        db_table = 'equipotrabajo'
+class tipoevento(models.Model):
+    Id = models.AutoField(primary_key=True)
+    Nombre = models.CharField(max_length=250, null= False, blank=False)
+
+    class Meta:
+        db_table = 'tipoevento'
+class eventos(models.Model):
+    Id = models.AutoField(primary_key=True)
+    Nombre = models.CharField(max_length=250, null=False, blank=False)
+    Descripcion = models.TextField(null=False, blank=False)
+    Fecha_evento = models.TextField(null=False, blank=False)
+    Fecha_inicio = models.DateTimeField(null=False, blank=False)
+    Fecha_fin = models.DateTimeField(null=False, blank=False)
+    municipio = models.ForeignKey(Municipio, on_delete=models.CASCADE, null=False, blank=False)
+    Detalle_ubicacion = models.CharField(max_length=250, null=False, blank=False)
+    Imagen_portada = models.ImageField(upload_to='eventos/', blank=False, null=False)
+    
+    class Meta:
+        db_table = 'eventos'
+class eventotipo (models.Model):
+    Id_tipoevento = models.ForeignKey(tipoevento, on_delete=models.CASCADE)
+    Id_evento = models.ForeignKey(eventos, on_delete=models.CASCADE)
+    
+    class Meta:
+        unique_together = ('Id_tipoevento', 'Id_evento')
+        
+    class Meta:
+        db_table = 'eventotipo'

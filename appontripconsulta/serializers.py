@@ -155,3 +155,31 @@ class DestinoTuristicoSerializer(serializers.ModelSerializer):
             'destinotipoturismo',
         ]
         
+class Fotografias_serializer_list(serializers.ModelSerializer):
+    
+    class Meta:
+        model = fotografias
+        
+        fields = [
+            'Id',
+            'Nombre',
+            'Destino',
+            'Actividad',
+            'Imagen',
+            'Descripcion',
+            'Autor',
+        ]
+
+class Establecimientos_turisticos_serializers_list(serializers.ModelSerializer):
+    
+    class Meta:
+        model = EstablecimientoTuristico
+        
+        fields = [
+            'Id',
+            'Id_destino',
+            'Nombre',
+            'Descripcion',
+            'Detalle_ubicacion',
+    
+        ]

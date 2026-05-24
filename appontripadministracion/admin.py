@@ -1,24 +1,6 @@
 from django.contrib import admin
 from django import forms
-from appontripadministracion.models import (
-    Pais,
-    Region,
-    Departamento,
-    Municipio,
-    DestinoTuristico,
-    Actividadturistica,
-    PaqueteTuristico,
-    PaqueteDestino,
-    PaqueteActividad,
-    Cliente,
-    Reserva,
-    fotografias,
-    EstablecimientoTuristico,
-    TipoAlojamiento,
-    Alojamiento,
-    Turismo,
-    destinotipoturismo
-)
+from appontripadministracion.models import *
 
 
 @admin.register(Pais)
@@ -97,4 +79,24 @@ class TurismoAdmin(admin.ModelAdmin):
     
 @admin.register(destinotipoturismo)
 class DestinotipoturismoAdmin(admin.ModelAdmin):
-      list_display = ('Id', 'Id_destino', 'Id_turismo')  
+      list_display = ('Id', 'Id_destino', 'Id_turismo') 
+
+@admin.register(tipoproducto)
+class TipoProductoAdmin(admin.ModelAdmin):
+    list_display = ('Id', 'Nombre')
+    
+@admin.register(productos)
+class PorductosAdmin(admin.ModelAdmin):
+    list_display = ('Id', 'Id_tipoproducto', 'Nombre')
+    
+@admin.register(tipoevento)
+class TipoeventoAdmin(admin.ModelAdmin):
+    list_display = ('Id', 'Nombre')
+    
+@admin.register(eventos)
+class EventosAdmin(admin.ModelAdmin):
+    list_display = ('Id', 'municipio', 'Nombre')
+
+@admin.register(eventotipo)
+class EventotipoAdmin(admin.ModelAdmin):
+    list_display = ('Id_tipoevento', 'Id_evento')
