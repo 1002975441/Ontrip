@@ -39,7 +39,8 @@ class FotografiasSerializer(serializers.ModelSerializer):
             'Imagen',
             'Descripcion',
             'Autor',
-            'fecha_creacion'
+            'fecha_creacion',
+            'Portada',
         ]
 
 class ActividadTuristicaSerializer(serializers.ModelSerializer):
@@ -92,6 +93,7 @@ class DestinoTuristicoSerializerFiltros(serializers.ModelSerializer):
     departamento = serializers.CharField(source='municipio.departamento.nombre_departamento', read_only=True)
     municipio = serializers.CharField(source='municipio.nombre_municipio', read_only=True)
     tipos_turismo = serializers.SerializerMethodField()
+    imagenesportada = serializers.SerializerMethodField()    
     class Meta:
         model = DestinoTuristico
 
@@ -101,7 +103,8 @@ class DestinoTuristicoSerializerFiltros(serializers.ModelSerializer):
             'region',
             'departamento',
             'municipio',
-            'tipos_turismo'
+            'tipos_turismo',
+            'imagenesportada'
         ]
 
     def get_tipos_turismo(self, obj):
@@ -111,6 +114,15 @@ class DestinoTuristicoSerializerFiltros(serializers.ModelSerializer):
             for item in obj.destinotipoturismo.all()
         ]
         
+    def get_imagenesportada(self, obj):
+
+        imagenes = obj.imagenes.filter(Portada=True)
+
+        return FotografiasSerializer(
+            imagenes,
+            many=True,
+            context=self.context
+        ).data
 class Atractivos_turisticos_serializers_list(serializers.ModelSerializer):
     
     class Meta:
