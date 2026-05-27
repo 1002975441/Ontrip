@@ -107,6 +107,7 @@ class fotografias(models.Model):
     Descripcion = models.CharField(max_length=250, null=True, blank=True)
     Autor = models.CharField(max_length=250, null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
+    Portada = models.BooleanField(default=0, null=True, blank=True)
     
     def __str__(self):
         return self.Descripcion or "Imagen"
