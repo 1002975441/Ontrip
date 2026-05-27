@@ -152,3 +152,9 @@ class FotografiasDetailView(generics.ListAPIView):
 class Establecimientos_turisticos_detailview(generics.ListAPIView):
     queryset = EstablecimientoTuristico.objects.all()
     serializer_class = Establecimientos_turisticos_serializers_list
+    
+class Fotografias_Portada_View(generics.ListAPIView):
+    serializer_class = FotografiasPortadaSerializer
+
+    def get_queryset(self):
+        return fotografias.objects.filter(Portada=True)
