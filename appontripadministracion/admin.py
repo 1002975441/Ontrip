@@ -21,7 +21,7 @@ class MunicipioAdmin(admin.ModelAdmin):
 
 @admin.register(DestinoTuristico)
 class DestinoTuristicoAdmin(admin.ModelAdmin):
-    list_display = ('nombre_destino', 'municipio', 'email_responsable_documentacion', 'estado', 'fecha_creacion')
+    list_display = ( 'nombre_destino', 'municipio', 'email_responsable_documentacion', 'estado', 'fecha_creacion')
 
 @admin.register(Actividadturistica)
 class ActividadTuristicaAdmin(admin.ModelAdmin):
@@ -100,3 +100,7 @@ class EventosAdmin(admin.ModelAdmin):
 @admin.register(eventotipo)
 class EventotipoAdmin(admin.ModelAdmin):
     list_display = ('Id_tipoevento', 'Id_evento')
+    
+@admin.register(atractivoturistico)
+class atractivo_turistico_admin (admin.ModelAdmin):
+    list_display = ('Id', 'Id_destino', 'Nombre')

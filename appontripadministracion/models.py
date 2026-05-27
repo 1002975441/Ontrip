@@ -317,3 +317,21 @@ class eventotipo (models.Model):
         
     class Meta:
         db_table = 'eventotipo'
+        
+class atractivoturistico (models.Model):
+    Id = models.AutoField(primary_key=True)
+    Id_destino = models.ForeignKey(DestinoTuristico, on_delete=models.CASCADE, null=True, blank=True, related_name='atractivosturisticos')
+    Nombre = models.CharField(max_length=250, null=False, blank=False)
+    Descripcion = models.TextField(null=True, blank=True)
+    Historia = models.TextField(null=True, blank=True)
+    Categorias = (
+        ('iglesia', 'Iglesia'),
+        ('museo', 'Museo'),
+        ('parque', 'Parque'),
+        ('mirador', 'Mirador'),
+        ('otro', 'Otro'),
+    )
+    Categoria = models.CharField(max_length=20, choices=Categorias)
+    
+    class Meta: 
+        db_table = 'atractivosturisticos'
