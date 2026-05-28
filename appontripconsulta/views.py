@@ -182,6 +182,6 @@ class Destinos_mas_consultados_view(APIView):
             total_visitas=Count('visitas')
         ).order_by('-total_visitas')[:10]
 
-        serializer = Destinos_mas_consultados(destinos, many=True)
+        serializer = Destinos_mas_consultados_serializer(destinos, many=True)
 
         return Response(serializer.data)

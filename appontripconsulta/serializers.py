@@ -218,16 +218,39 @@ class FotografiasPortadaSerializer(serializers.ModelSerializer):
             'Autor',
         ]
         
-class Destinos_mas_consultados(serializers.ModelSerializer):
+class Destinos_mas_consultados_serializer(serializers.ModelSerializer):
 
     total_visitas = serializers.IntegerField(read_only=True)
 
+    region = serializers.CharField(source='municipio.departamento.region.nombre_region', read_only=True)
+    departamento = serializers.CharField(source='municipio.departamento.nombre_departamento', read_only=True)
+    municipio = serializers.CharField(source='municipio.nombre_municipio',read_only=True)
+    ubicacion = serializers.SerializerMethodField()
+    tipos_turismo = serializers.SerializerMethodField()
     class Meta:
         model = DestinoTuristico
 
         fields = [
             'id',
             'nombre_destino',
-            'descripcion',
+            'region',
+            'departamento',
+            'municipio',
+            'ubicacion',
+            'tipos_turismo',
             'total_visitas'
         ]
+
+    def get_tipos_turismo(self, obj):
+
+        return [
+            item.Id_turismo.Nombre
+            for item in obj.destinotipoturismo.all()
+        ]
+
+    def get_ubicacion(self, obj):
+
+        municipio = obj.municipio.nombre_municipio
+        departamento = obj.municipio.departamento.nombre_departamento
+
+        return f"{municipio}, {departamento}, Colombia"
