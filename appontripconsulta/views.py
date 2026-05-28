@@ -5,6 +5,7 @@ from appontripadministracion.models import *
 from appontripconsulta.serializers import *
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import generics
+from django.db.models import Count
 
 
 class FiltrosJerarquicosAPIView(APIView):
@@ -142,8 +143,22 @@ class FiltrosJerarquicosAPIView(APIView):
         })
 
 class DestinoTuristicoDetailView(RetrieveAPIView):
+
     queryset = DestinoTuristico.objects.all()
     serializer_class = DestinoTuristicoSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+
+        instance = self.get_object()
+
+        # registrar visita
+        VisitaDestino.objects.create(
+            destino=instance
+        )
+
+        serializer = self.get_serializer(instance)
+
+        return Response(serializer.data)
 
 class FotografiasDetailView(generics.ListAPIView):
     queryset = fotografias.objects.all()
@@ -158,3 +173,15 @@ class Fotografias_Portada_View(generics.ListAPIView):
 
     def get_queryset(self):
         return fotografias.objects.filter(Portada=True)
+
+class Destinos_mas_consultados_view(APIView):
+
+    def get(self, request):
+
+        destinos = DestinoTuristico.objects.annotate(
+            total_visitas=Count('visitas')
+        ).order_by('-total_visitas')[:10]
+
+        serializer = Destinos_mas_consultados(destinos, many=True)
+
+        return Response(serializer.data)

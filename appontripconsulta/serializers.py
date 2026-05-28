@@ -217,3 +217,17 @@ class FotografiasPortadaSerializer(serializers.ModelSerializer):
             'Imagen',
             'Autor',
         ]
+        
+class Destinos_mas_consultados(serializers.ModelSerializer):
+
+    total_visitas = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = DestinoTuristico
+
+        fields = [
+            'id',
+            'nombre_destino',
+            'descripcion',
+            'total_visitas'
+        ]

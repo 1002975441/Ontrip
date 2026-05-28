@@ -336,3 +336,9 @@ class atractivoturistico (models.Model):
     
     class Meta: 
         db_table = 'atractivosturisticos'
+        
+class DestinosMasConsultados(models.Model):
+    destino = models.ForeignKey(DestinoTuristico,on_delete=models.CASCADE,related_name='visitas')
+    fecha_consulta = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        db_table = 'destinosmasconsultados'
