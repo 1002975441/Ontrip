@@ -152,7 +152,7 @@ class DestinoTuristicoDetailView(RetrieveAPIView):
         instance = self.get_object()
 
         # registrar visita
-        VisitaDestino.objects.create(
+        DestinosMasConsultados.objects.create(
             destino=instance
         )
 
