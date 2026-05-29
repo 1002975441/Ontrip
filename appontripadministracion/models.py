@@ -68,7 +68,8 @@ class DestinoTuristico(models.Model):
     estado = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     tiposturismo = models.ManyToManyField("Turismo", through='destinotipoturismo', related_name='destinos')
-
+    latitud = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitud = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     class Meta:
         db_table = 'destinosturisticos'
 
