@@ -4,7 +4,11 @@ from appontripadministracion.models import *
 class PaisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pais
-        fields = ['id', 'nombre_pais', 'estado', 'fecha_creacion']
+        fields = [
+            'id', 
+            'nombre_pais', 
+            'estado',
+            ]
 
 class RegionSerializer(serializers.ModelSerializer):
     pais_nombre = serializers.CharField(source='pais.nombre_pais', read_only=True)
